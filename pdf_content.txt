@@ -1,0 +1,517 @@
+﻿Pages: 5
+--- Page 1 ---
+EE200: Signals, Systems and Networks
+Instructor: Dr. Tushar Sandhan
+Topic: Course Project
+Department: EE
+Marks: 25%
+Instructions
+ΓêÆYou have to submit each question separately on mookit in the format given in the appendix here
+ΓêÆYou have to form a group of maximum 2 members
+ΓêÆIn case you could not form a group, you may submit project as an individual
+ΓêÆMarks for each question are given in brackets
+ΓêÆCorresponding required data for the project: https://home.iitk.ac.in/~sandhan/
+Q1A. Frequency Forensics
+ΓÇÿThe Ghost SignalΓÇÖ [3%]
+In intelligence and surveillance systems, infor-
+mation is often transmitted through hostile envi-
+ronments where signals may be intentionally cor-
+rupted to prevent unauthorized access.
+Imagine
+that a reconnaissance satellite intercepts a grayscale
+image suspected to contain critical information.
+Unfortunately, the received image appears heavily
+distorted by a repetitive pattern, making the orig-
+inal content nearly impossible to recognize. Intel-
+ligence analysts believe that the image contains an
+important question whose answer may reveal the
+next stage of the mission. However, before the ques-
+tion can be answered, it must first be recovered
+from the corruption. To an observer in the spatial
+domain, the image looks corrupted beyond repair.
+However, a signal processing engineer knows that
+periodic interference leaves unique fingerprints in
+the frequency domain.
+An image I(x, y) is a finite two-dimensional dis-
+crete signal containing intensity variations along
+both spatial directions. Since periodic disturbances
+correspond to specific frequency components, ana-
+lyzing the image in the Fourier domain may reveal
+the source of corruption. By transforming the im-
+age into the frequency domain, can you identify sig-
+natures of the unwanted interference? What math-
+ematical equations govern the two-dimensional Dis-
+crete Fourier Transform (DFT) and its inverse? If
+you plot the magnitude spectrum of the given image
+in both linear and dB scales, where are the domi-
+nant spectral components located? Is the spectrum
+naturally centered, and if not, how can it be shifted
+to place the lower frequencies at the center of the
+transform?
+The interference has been deliberately intro-
+duced in such a way that only a few frequency com-
+ponents are responsible for the corruption.
+Can
+you locate these components in the spectrum?
+How do they differ from the frequencies associ-
+ated with the actual image content? Design a suit-
+able frequency-domain system capable of suppress-
+ing the unwanted frequencies while preserving the
+useful information. Carefully analyze how periodic
+noise manifests itself in the Fourier domain and jus-
+tify the frequencies selected for removal.
+After filtering, reconstruct the image using the
+inverse Fourier transform.
+Has the hidden mes-
+sage been successfully recovered? Compare the cor-
+rupted image, its frequency spectrum, the filtered
+spectrum, and the recovered image. How does the
+choice of filter parameters affect the quality of re-
+construction? Does removing more frequencies al-
+ways improve the result, or can it also destroy useful
+information? Discuss your observations and com-
+ment on practical applications of frequency-domain
+image restoration in communication systems, re-
+mote sensing, surveillance and medical imaging.
+This is known as a Frequency-Domain Image Re-
+covery System. Use the ghost signal input im-
+age as an input to this system.
+Q1B. Digital Detective
+ΓÇÿMissing BoundariesΓÇÖ [2%]
+Figure 1: Edge detector system: input & output
+Humans can effortlessly recognize faces, vehi-
+cles, roads, handwritten text and everyday ob-
+jects, often within a fraction of a second.
+Sur-
+prisingly, much of this ability comes from identi-
+fying boundaries where intensity changes abruptly.
+These boundaries, known as edges, contain a signifi-
+
+--- Page 2 ---
+cant portion of the structural information present in
+an image. Modern technologies such as autonomous
+vehicles, medical imaging systems, facial recogni-
+tion software and industrial inspection tools all rely
+on the ability to detect and analyze edges accu-
+rately.
+Image I(x, y) is a finite two-dimensional
+discrete signal whose intensity varies in both spatial
+directions. Abrupt intensity transitions often cor-
+respond to object boundaries and therefore contain
+valuable information about the scene. What math-
+ematical operation can be used to identify regions
+where intensity changes rapidly? How are deriva-
+tives and gradients related to edge detection? Ex-
+plore the concepts behind the Sobel filter, which
+is used for 2D convolution operation on images to
+detect edges.
+Using the given image, apply the Sobel ker-
+nel to reveal the hidden boundaries within the
+scene. How does noise affect the detected bound-
+aries, and what role does image smoothing play
+before edge extraction?
+Can weak edges be pre-
+served without introducing excessive noise?
+Use
+missing boundaries input image for your com-
+plete analysis.
+Q2. The Midnight Episode
+ΓÇÿCatching the ArrhythmiaΓÇÖ [7.5%]
+Maya is interning this summer at a cardiology lab.
+One of the patients was sent home wearing a Holter
+monitor, a small portable device that records the
+heartΓÇÖs electrical activity (an ECG) continuously for
+many hours while the patient goes about ordinary
+life.
+When the patient came back, his recording
+was hours long, and his cardiologist suspects that
+at some point during the night his heart slipped
+into an arrhythmia: an episode where the steady,
+regular heartbeat becomes irregular. Scanning the
+whole recording manually is slow and error-prone.
+Maya recalls two pictures from her Signals &
+Systems class (Figure 2). In a healthy heart (Fig-
+ure 2a) the ECG is almost periodic, the same shape
+repeats at steady intervals, like a metronome: a
+small bump (the P wave), a tall sharp spike (the
+QRS complex), and another bump (the T wave).
+During an arrhythmia (Figure 2b) this regularity
+falls apart: beats arrive too early or too late, spikes
+change shape or even point the wrong way, and the
+clean repetition is lost.
+Maya had completed EE200, so she could devise
+an elegant plan. She decided rather than read the
+whole signal, she will teach the computer to rec-
+ognize one healthy heartbeat, then convolve it with
+the recording and check, stretch by stretch, whether
+the signal still looks like a healthy beat. Where the
+match breaks down, the episode has begun.
+Figure 2: ECG: Electro-Cardio-Grams
+The recording. The clip Maya is studying is a
+discrete-time signal x[n] sampled at fs = 250 Hz,
+and it is having N = 5000 samples. In the early
+(healthy) portion, the heart beats with metronome
+regularity: one full beat {P, QRS, T} arrives at
+every 0.8 seconds.
+(a) Reading the signal: [0.75%]
+(i) How many seconds long is the clip?
+(ii) In the healthy stretch, what is the pa-
+tientΓÇÖs heart rate in beats per minute,
+and how many samples does one healthy
+beat occupy?
+(iii) Treating the healthy ECG as a periodic
+signal, what is its fundamental frequency
+f0 (in Hz)?
+(b) Healthy heart in frequency domain: [0.75%]
+(i) As the healthy ECG is (nearly) peri-
+odic, what does its magnitude spectrum
+|X(f)| look like, a smooth continuous
+curve, or something else?
+(ii) The QRS spike is sharp and narrow; the
+P and T waves are broad and smooth.
+Which of these is responsible for the
+higher-frequency content of the ECG,
+and why?
+(iii) Suppose the patientΓÇÖs heart rate rises
+to 150 bpm but stays perfectly regular.
+What happens to f0, and to the spac-
+ing between the components in the spec-
+trum?
+(c) Cutting a heartbeat (windowing): [1.0%]
+To build her template, Maya multiplies the
+signal by a rectangular window, a function
+equal to 1 inside some interval [n1, n2] and 0
+outside, to snip out a segment.
+(i) To capture exactly one full beat, how
+wide (in samples) should the window
+be, and roughly where in the recording
+should she place it?
+(ii) She first tries a window only 80 sam-
+ples wide, then one 600 samples wide.
+For the purpose of making a clean ΓÇÿone
+healthy beatΓÇÖ template, explain what
+goes wrong in each case.
+
+--- Page 3 ---
+(iii) In class you saw that a short window
+gives sharp time resolution but poor
+frequency resolution, while a long win-
+dow does the reverse.
+In one or two
+sentences, relate that same trade-off to
+MayaΓÇÖs choice here: why isnΓÇÖt ΓÇÿmake the
+window as short as possibleΓÇÖ automati-
+cally the best idea?
+(d) Match the template (correlation): [1.5%]
+Let the template (one healthy beat) be t[k]
+for k = 0, 1, . . . , L ΓêÆ1. Sliding it to start at
+position m, Maya compares it with the seg-
+ment x[m], x[m + 1], . . . , x[m + L ΓêÆ1] using a
+normalized correlation score as,
+╧ü(m) =
+P
+k t[k] x[m + k]
+ΓêÑtΓêÑΓêÑxmΓêÑ
+where ΓêÑ┬╖ΓêÑis the energy (root-sum-of-squares)
+of a segment. (You do not need to compute
+this by hand, just reason about it.)
+Intu-
+itively, ╧ü(m) measures how similar in shape
+the template and the segment are.
+(i) What range of values can ╧ü(m) take, and
+what value signals a near-perfect match?
+(ii) Real ECG amplitude drifts slowly up
+and down over time (this drift is called
+baseline wander), and beats vary in
+size. Why is the normalization (divid-
+ing by the energies) important? In par-
+ticular, what would happen to an un-
+normalized score P
+k t[k]x[m+k] if a per-
+fectly healthy beat happened to be twice
+as tall as the template?
+(iii) During the arrhythmia, one abnormal
+beat is inverted (flipped upside-down)
+relative to the template. Roughly what
+value of ╧ü would you expect for it, and
+why does that make inverted beats espe-
+cially easy to flag?
+(e) Onset detection & the spectrogram: [1.5%]
+Maya computes ╧ü(m) at every position across
+the 20-second clip and plots ╧ü against time. In
+the healthy region, it reaches 1; somewhere it
+drops and sometimes strongly negative.
+(i) Propose a simple rule Maya could use to
+declare an onset time for the arrhythmia.
+Then discuss the trade-off in setting her
+threshold too high versus too low.
+(ii) A labmate suggests a second, indepen-
+dent view: a spectrogram of the whole
+clip (slide a window along the signal,
+take the DFT of each windowed piece,
+and stack the results as columns over
+time).
+Describe how the spectrogram
+would look different in the healthy re-
+gion versus the arrhythmia region.
+(iii) The correlation plot and the spectro-
+gram might disagree slightly on the ex-
+act onset time. Explain why, and men-
+tion which one you would trust to pin-
+point the single moment a bad beat first
+appears. (Hint: think back to the trade-
+off in part (c).)
+(f) sampling & aliasing: [0.5%]
+To make wearableΓÇÖs battery last longer, an en-
+gineer proposes recording at only fΓÇ▓
+s = 50 Hz
+instead of 250 Hz. The clinically important
+sharp features of the QRS complex contain
+frequency content up to about 40 Hz.
+(i) By the Nyquist theorem, what minimum
+rate is needed to capture content up to
+40 Hz without aliasing?
+(ii) In plain words, what would aliasing do to
+the sharp QRS spikes at 50 Hz, and why
+is that dangerous for MayaΓÇÖs detector?
+(iii) If the team really must lower the sam-
+pling rate, what is the fix, and what is
+the unavoidable cost of it for an ECG?
+(g) Prototyping the detector in code: [1.5%]
+Maya wants to test her logic on her lap-
+top.
+She has exported the 5000 sample
+recording into a file called patient ecg.npy,
+and
+her
+clean
+200-sample
+template
+into
+template.npy.
+Write
+a
+Python
+code
+find onset(ecg signal, template,
+threshold) that:
+(1) Calculates the normalized correlation
+score ╧ü for the signal beat-by-beat (i.e.,
+jumping forward by the length of the
+template
+each
+time,
+not
+sample-by-
+sample).
+(2) Identifies and returns the index m of
+the very first beat where the correla-
+tion drops strictly below the provided
+threshold (assume a threshold of 0.5).
+If it is never breached, return -1.
+(h) Visualizing the Spectrogram: [0.5%]
+Maya wants to visually verify the arrhythmia
+using a spectrogram before running the corre-
+lation script. Assume the 5000-sample record-
+ing is loaded as a 1D NumPy array called
+ecg signal.
+Using the scipy.signal and
+matplotlib.pyplot libraries, write a brief
+Python snippet to compute and plot the spec-
+trogram of the recording.
+Crucial step:
+Based on your reasoning in
+part (e), choose a specific window length
+(nperseg) in samples that will successfully re-
+veal the steady horizontal harmonic bands in
+the healthy region. State the window length
+you chose and briefly comment (1 sentence)
+on why you picked that exact number.
+
+--- Page 4 ---
+Q3A. Sonic Signatures
+ΓÇÿMagical Mystery TuneΓÇÖ [7.5%]
+Figure 3: A spectrogram of a short clip, with the
+strongest time-frequency peaks ΓåÆits constellation
+(circled)
+You are in a noisy caf┬┤e when a song you cannot
+name starts playing. You ask your music quizzer
+friend who also has no idea. So you hold up your
+phone, and within seconds it tells you the title,
+recognised from a few seconds of sound, over all the
+chatter. Remarkably, it never compares the actual
+audio waveforms. Instead it turns the music into a
+picture of which frequencies are present at each in-
+stant, and keeps only a sparse set of standout points
+from that picture as the songΓÇÖs fingerprint. In this
+question you will build a small version of this iden-
+tifier. First, see why a single Fourier transform will
+not do. Plot the DFT magnitude of an entire song:
+you can read off which frequencies it contains, but
+not when they were played, all sense of timing is
+gone. What we really want is a way to watch the
+frequency content change as the song plays, and
+that is exactly what a spectrogram gives us. The
+idea is simple: slide a short window along the signal
+and take the Fourier transform of each short slice,
+then stack those slices side by side into an image.
+Time runs along the horizontal axis, frequency up
+the vertical axis, and the brightness of each point
+shows how strong that frequency is at that moment:
+so a rising note traces a rising streak, a steady tone
+a horizontal line. Each slice is nothing more than
+an ordinary DFT, the Fourier analysis applied to
+one short piece of the signal at a time. Compute
+and plot the spectrogram of a provided song. Now
+experiment a little: redo it with a short window
+and with a long one, and describe what you observe
+about the resolution in time versus in frequency.
+Next, build the fingerprint. From the spectro-
+gram keep only the strongest peaks, the local max-
+ima that stand out from their surroundings (the
+circled points in Figure 3), and plot this ΓÇÿconstel-
+lationΓÇÖ of points. Pair the nearby peaks together
+into compact hashes (two frequencies and the time
+gap between them) and store them in a database
+for several provided songs. To identify a new clip,
+fingerprint it the same way and, for each song, look
+at the time offsets at which its hashes match: a true
+match lines them all up at a single offset, while a
+wrong song gives only scattered, random matches.
+Output the name of the matched song. Then re-
+peat the matching using single peaks on their own
+instead of pairs, and compare what you get, ex-
+plain why joining two peaks into a single fingerprint
+makes a correct match so much more decisive.
+Now see how robust your identifier is. Add in-
+creasing amounts of noise to a query and find how
+far you can push it before recognition fails; then
+shift the whole clip up in pitch by a little (or stretch
+it slightly in time) and try again. Describe what
+you see in each case and explain why; in particular,
+why a small pitch shift can defeat the identifier even
+though the song still sounds the same to you. Sug-
+gest one change that would make the system more
+robust. Present your spectrograms, plots, and writ-
+ten observations in the report.
+Q3B. Signals to Softwares
+ΓÇÿZapp tain AmericaΓÇÖ [5%]
+Wrap your identifier in a simple interactive app,
+that a user can run: it should index the provided
+songs into a database, accept a new query clip, and
+display the recognised song, ideally showing the in-
+termediate steps (the spectrogram, the constella-
+tion of peaks, and the offset histogram that de-
+cides the match). Refer to the provided demo video
+showcasing expected functionality for a better idea.
+
+--- Page 5 ---
+Appendix
+Submission and Evaluation Guidelines for
+Q1A and Q1B
+ΓÇó Evaluation Scheme:
+40% marks will be
+awarded for the final results, analysis and cor-
+rectness of the output, while 60% marks will
+be awarded for the methodology, implemen-
+tation process, explanations, justification of
+approaches and the quality of the project re-
+port.
+ΓÇó Submission
+Requirements:
+Submit
+a
+Jupyter Notebook (.ipynb) containing the
+complete implementation and answers to all
+the sub-questions, along with a project report
+(PDF) containing the methodology, plots, ob-
+servations and final results.
+ΓÇó Dataset Usage Policy: Only the provided
+images must be used as inputs for the assign-
+ment, and all results must be obtained from
+the given dataset. The use of AI-generated
+or externally generated images is strictly pro-
+hibited and will attract a strict penalty.
+ΓÇó Report Expectations: The report should
+include relevant plots, intermediate observa-
+tions, comparisons, discussions and final con-
+clusions. Marks will be awarded for both the
+quality of the results and the reasoning used
+to obtain them, not just the final output.
+Submission and Evaluation Guidelines for
+Q2 (all parts)
+ΓÇó Submission
+Requirements:
+Submit
+a
+Jupyter Notebook (.ipynb) containing the
+complete implementation and answers to all
+the sub-questions, along with a project report
+(PDF) containing the explainations, plots,
+observations and final results.
+ΓÇó Clarity of Responses: Responses should be
+concise and directly address the core problem.
+Please avoid extraneous details and overly
+lengthy explanations.
+ΓÇó Dataset and Reporting:
+Analysis must
+be conducted exclusively using the provided
+dataset. Additionally, all generated plots, fig-
+ures, and explainations must be embedded di-
+rectly within the final report file.
+Submission and Evaluation Guidelines for
+Q3 (A) and Q3 (B)
+ΓÇó Submission Requirements: For Q3 (A),
+submit your report as a PDF containing the
+spectrograms, experiments, observations and
+explanations. For Q3 (B), deploy your ap-
+plication and submit a link to the live app in
+the same PDF, so that we can open and test
+it directly: both the single-clip mode and the
+batch mode, exactly as a user would use it;
+also include a link to its source code. Host-
+ing is free and quick on Streamlit Community
+Cloud (or a similar service); make sure the in-
+dexed song database ships with the deployed
+app so it works immediately. Also, submit all
+your code in a zip file.
+ΓÇó What to Build ΓåÆTwo Modes:
+(i) a
+single-clip mode that identifies one uploaded
+query clip and displays (at the very least) the
+intermediate steps: the spectrogram, the con-
+stellation of peaks, and the offset histogram
+that decides the match; and (ii) a batch mode
+that accepts a set of query clips and writes a
+file results.csv with exactly two columns,
+filename, prediction, where prediction
+is the matched songΓÇÖs filename without ex-
+tension. The batch format must be followed
+exactly, as it will be evaluated automatically.
+Note: If the submitted link does not work
+then you will be awarded 0 marks for Q3 (B).
+ΓÇó Song Database:
+Download the provided
+song library from the link on the course web-
+page, index it once, and keep the resulting
+database.
+Use the files exactly as provided
+and do not rename them: a songΓÇÖs filename
+(without extension) is the label your identi-
+fier must output.
+ΓÇó Tools:
+You do not need prior experience
+building apps; lightweight frameworks such as
+Streamlit or Gradio let you wrap your func-
+tions into a usable app rather easily.
+You
+may use any other frameworks you are famil-
+iar with provided the single-clip visuals and
+the exact results.csv format are produced.
+ΓÇó Report Expectations: Include the spectro-
+grams you computed and, for each experi-
+ment: window length; single peaks vs. paired
+hashes; added noise; pitch shift / time stretch
+ΓåÆthe relevant plots together with a written
+explanation of what you observed and why.
+
