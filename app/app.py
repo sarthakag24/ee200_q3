@@ -343,6 +343,20 @@ HEADER_HTML = """
 @st.cache_resource(show_spinner="Loading fingerprint database…")
 def load_db():
     if not DB_FILE.exists():
+        # Check if split part files exist and reconstruct in-memory
+        parts = sorted(list(DB_FILE.parent.glob("fingerprint_db.pkl.part*")))
+        if parts:
+            try:
+                combined = bytearray()
+                for part in parts:
+                    with open(part, "rb") as f:
+                        combined.extend(f.read())
+                db = pickle.loads(combined)
+                with open(META_FILE, "rb") as f:
+                    song_meta = pickle.load(f)
+                return db, song_meta
+            except Exception as e:
+                st.error(f"Error reconstructing database from parts: {e}")
         return None, None
     with open(DB_FILE,   "rb") as f: db        = pickle.load(f)
     with open(META_FILE, "rb") as f: song_meta = pickle.load(f)
