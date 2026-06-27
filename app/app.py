@@ -17,10 +17,6 @@ from fingerprinter import (
     compute_spectrogram, get_peaks, make_hashes, load_audio,
     SR, N_FFT, HOP
 )
-
-# ════════════════════════════════════════════════════════════════════════════
-#  PAGE CONFIG
-# ════════════════════════════════════════════════════════════════════════════
 st.set_page_config(
     page_title="EE200: Audio Fingerprinting",
     page_icon="🎵",
